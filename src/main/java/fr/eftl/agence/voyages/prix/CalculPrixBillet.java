@@ -1,7 +1,8 @@
 package fr.eftl.agence.voyages.prix;
 
 public class CalculPrixBillet {
-
+	
+	private CalculPrixUnitaire calculPrixUnitaire;
 	private Integer prixUnitaire;
 	private String classe;
 	
@@ -26,8 +27,11 @@ public class CalculPrixBillet {
 	}
 	
 	public Integer calculer(String depart, String arrivee, String classe) {
-		CalculPrixUnitaire prixUnitaire = new CalculPrixUnitaire(depart, arrivee);
-		Integer varPrixUnitaire = prixUnitaire.generer();
+
+		calculPrixUnitaire.setDepart(depart);
+		calculPrixUnitaire.setArrivee(arrivee);
+		
+		Integer varPrixUnitaire = calculPrixUnitaire.generer();
 		switch(classe) {
 		
 		case "eco":
@@ -43,6 +47,16 @@ public class CalculPrixBillet {
 			return varPrixUnitaire;
 			
 		}
+	}
+
+
+	public CalculPrixUnitaire getCalculPrixUnitaire() {
+		return calculPrixUnitaire;
+	}
+
+
+	public void setCalculPrixUnitaire(CalculPrixUnitaire calculPrixUnitaire) {
+		this.calculPrixUnitaire = calculPrixUnitaire;
 	}
 }
 
